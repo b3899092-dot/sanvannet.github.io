@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Legends Top Up - SAN VANNET</title>
+  
+  <!-- Google Fonts: Kantumruy Pro & Orbitron -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kantumruy Pro', sans-serif;
+    }
+
+    body {
+      background-color: #0b0205;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+    }
+
+    /* Container Box */
+    .container {
+      background-color: #ffffff;
+      border-radius: 20px;
+      max-width: 950px;
+      width: 100%;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    /* Header Title */
+    .header-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #ff2a5f 70%, #990026 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5));
+      margin-bottom: 5px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #222;
+      margin: 20px 0 15px 0;
+    }
+
+    /* Input User ID Section */
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      width: 100%;
+    }
+
+    .input-group input {
+      flex: 1;
+      width: 50%;
+      min-width: 0;
+      padding: 12px 15px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: #d81b60;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .btn-check {
+      background-color: #e4e6eb;
+      color: #050505;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-help {
+      background-color: #651fff;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .note-text {
+      color: #d81b60;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    /* Item Cards Grid */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .item-card {
+      border: 1.5px solid #cfd8dc;
+      border-radius: 12px;
+      padding: 10px 5px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    .item-card:hover {
+      border-color: #d81b60;
+    }
+
+    .item-card.active {
+      border: 2px solid #d81b60 !important;
+      background-color: #fff5f8 !important;
+      box-shadow: 0 4px 12px rgba(216, 27, 96, 0.3);
+    }
+
+    .badge-discount {
+      position: absolute;
+      top: -8px;
+      right: 5px;
+      background: #651fff;
+      color: white;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
+    .item-card img {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+      margin-bottom: 5px;
+    }
+
+    .item-name {
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.2;
+    }
+
+    .item-subtext {
+      font-size: 0.65rem;
+      color: #666;
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .item-price {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #d81b60;
+      margin-top: 4px;
+    }
+
+    /* Payment Section */
+    .step-3-header {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ff2a5f;
+      margin-bottom: 10px;
+    }
+
+    .payment-option {
+      border: 1.5px solid #d1d5db;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .payment-option:hover {
+      border-color: #d81b60;
+      background-color: #fff5f8;
+    }
+
+    .payment-logo {
+      background: #e60023;
+      color: white;
+      font-weight: 900;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    .payment-text div:first-child {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .payment-text div:last-child {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* Terms & Submit */
+    .terms-group {
+      margin-top: 15px;
+      font-size: 0.8rem;
+    }
+
+    .terms-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .total-box {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      border: 1px solid #d81b60;
+      background: #fff;
+      color: #d81b60;
+      padding: 8px 30px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #d81b60;
+      color: #fff;
+    }
+
+    /* Modal / Popup ABA QR Code */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 15px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 380px;
+      width: 100%;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #888;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #e60023;
+      margin-bottom: 2px;
+    }
+
+    /* Countdown Timer Style */
+    .timer-box {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .timer-box span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+    }
+
+    .qr-image-container {
+      background: #f8f9fa;
+      border: 2px dashed #e0e0e0;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+
+    .qr-image-container img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .modal-details {
+      background: #fff5f8;
+      border: 1px solid #ffd1dc;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-size: 0.88rem;
+      text-align: left;
+      margin-bottom: 12px;
+    }
+
+    .modal-details div {
+      margin-bottom: 4px;
+    }
+
+    .modal-details div:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-total-price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #d81b60;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .btn-done {
+      width: 100%;
+      background-color: #d81b60;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn-done:hover {
+      background-color: #b7154d;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+      .header-title {
+        font-size: 2.2rem;
+      }
+      .input-group {
+        flex-direction: column;
+      }
+      .input-group input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Box -->
+  <div class="container">
+    <h1 class="header-title">SAN VANNET</h1>
+    <div class="section-title">បញ្ចូលឈ្មោះ: user ID</div>
+
+    <!-- User ID Inputs -->
+    <div class="input-group">
+      <input type="text" id="userId" placeholder="បញ្ចូលឈ្មោះ: user ID">
+      <input type="text" id="zoneId" placeholder="( Zone ID )">
+    </div>
+
+    <div class="info-row">
+      <button class="btn-check">Check:</button>
+      <button class="btn-help">?</button>
+    </div>
+
+    <div class="note-text">
+      *ចង់ដឹង ID ដើម្បីឃើញ User ID សូមចូលទៅក្នុងហ្គេម ហើយចុចរូបភាពអាវាតានៅខាងឆ្វេងផ្នែកខាងលើ រួចចុចទៅកាន់ "Basic Info" ពេលនោះ User ID នឹងបង្ហាញឲ្យឃើញ បន្ទាប់មកយកមក ID នោះមកបំពេញ ឧទាហរណ៍: 123456789 (1234)។
+    </div>
+
+    <!-- Group 1: Promo Packages -->
+    <div class="section-title">កញ្ចប់ពេញនិយមតម្លៃធូរ</div>
+    <div class="item-grid">
+      <div class="item-card">
+        <span class="badge-discount">-0.02$</span>
+        <img src="oss-4d5cde2441bc0776b878d1eba42d7f74.webp" alt="Pass">
+        <div class="item-name">Weekly Pass X3</div>
+        <div class="item-price">$4.80</div>
+      </div>
+      <div class="item-card">
+        <span class="badge-discount">-0.42$</span>
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">514 Diamonds</div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="item-card">
+        <span class="badge-discount">-0.96$</span>
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">3860 Diamonds</div>
+        <div class="item-price">$53.00</div>
+      </div>
+    </div>
+
+    <!-- Group 2: Full Regular Packages (29 Items) -->
+    <div class="section-title">កញ្ចប់ពេញនិយមតម្លៃធម្មតា</div>
+    <div class="item-grid">
+      <!-- Row 1 -->
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">1222</div>
+        <div class="item-price">$16.32</div>
+      </div>
+      <div class="item-card">
+        <img src="oss-4d5cde2441bc0776b878d1eba42d7f74.webp" alt="Pass">
+        <div class="item-name">Weekly Pass X2</div>
+        <div class="item-price">$3.21</div>
+      </div>
+      <div class="item-card">
+        <img src="oss-4d5cde2441bc0776b878d1eba42d7f74.webp" alt="Pass">
+        <div class="item-name">Weekly pass</div>
+        <div class="item-price">$1.61</div>
+      </div>
+      <div class="item-card">
+        <img src="Screenshot_1.png" alt="Diamonds">
+        <div class="item-name">50 Diamonds Free</div>
+        <div class="item-subtext">50 Diamonds ភ្នាល់បានតែ១ដងប៉ុណ្ណោះ</div>
+        <div class="item-price">$0.84</div>
+      </div>
+      <div class="item-card">
+        <img src="Screenshot_1.png" alt="Diamonds">
+        <div class="item-name">150 Diamonds Free</div>
+        <div class="item-subtext">150 Diamonds ភ្នាល់បានតែ១ដងប៉ុណ្ណោះ</div>
+        <div class="item-price">$2.48</div>
+      </div>
+      <div class="item-card">
+        <img src="Screenshot_1.png" alt="Diamonds">
+        <div class="item-name">250 Diamonds Free</div>
+        <div class="item-subtext">250 Diamonds ភ្នាល់បានតែ១ដងប៉ុណ្ណោះ</div>
+        <div class="item-price">$3.98</div>
+      </div>
+      <div class="item-card">
+        <img src="Screenshot_1.png" alt="Diamonds">
+        <div class="item-name">500 Diamonds Free</div>
+        <div class="item-subtext">500 Diamonds ភ្នាល់បានតែ១ដងប៉ុណ្ណោះ</div>
+        <div class="item-price">$8.17</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="item-card">
+        <img src="Screenshot_2.png" alt="Pass">
+        <div class="item-name">Twilight pass</div>
+        <div class="item-price">$8.53</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">86 Diamonds</div>
+        <div class="item-price">$1.3</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">172 Diamonds</div>
+        <div class="item-price">$2.59</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">257 Diamonds</div>
+        <div class="item-price">$3.71</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">343 Diamonds</div>
+        <div class="item-price">$5.02</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">429 Diamonds</div>
+        <div class="item-price">$6.3</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">600 Diamonds</div>
+        <div class="item-price">$8.72</div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">706 Diamonds</div>
+        <div class="item-price">$10.18</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">878 Diamonds</div>
+        <div class="item-price">$12.76</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">964 Diamonds</div>
+        <div class="item-price">$14.06</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">1060 Diamonds</div>
+        <div class="item-price">$15.44</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">1412 Diamonds</div>
+        <div class="item-price">$20.35</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">1670 Diamonds</div>
+        <div class="item-price">$24.24</div>
+      </div>
+      <div class="item-card">
+        <img src="images.jfif" alt="Diamonds">
+        <div class="item-name">1756 Diamonds</div>
+        <div class="item-price">$25.52</div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">2195 Diamonds</div>
+        <div class="item-price">$30.8</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">2367 Diamonds</div>
+        <div class="item-price">$33.38</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">2711 Diamonds</div>
+        <div class="item-price">$38.55</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">2901 Diamonds</div>
+        <div class="item-price">$40.97</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">3503 Diamonds</div>
+        <div class="item-price">$50.03</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">4032 Diamonds</div>
+        <div class="item-price">$56.54</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">4566 Diamonds</div>
+        <div class="item-price">$64.13</div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">5100 Diamonds</div>
+        <div class="item-price">$71.72</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">5444 Diamonds</div>
+        <div class="item-price">$76.88</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">6134 Diamonds</div>
+        <div class="item-price">$86.63</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">6944 Diamonds</div>
+        <div class="item-price">$97.91</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">37152 Diamonds</div>
+        <div class="item-price">$515.3</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">46440 Diamonds</div>
+        <div class="item-price">$644.13</div>
+      </div>
+      <div class="item-card">
+        <img src="mlbb-2901-olmos-uz-76026097-sw268sh224.webp" alt="Diamonds">
+        <div class="item-name">55728 Diamonds</div>
+        <div class="item-price">$772.95</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 Box: Payment -->
+  <div class="container">
+    <div class="step-3-header">Mobile Legends</div>
+    <div class="section-title">ជ្រើសរើសការបង់ប្រាក់</div>
+    
+    <div class="payment-option" id="btnPaymentOption">
+      <div class="payment-logo">KHQR</div>
+      <div class="payment-text">
+        <div>ABA KHQR</div>
+        <div>Scan to pay with any banking app</div>
+      </div>
+    </div>
+
+    <div class="terms-group">
+      <p style="font-weight: bold; margin-bottom: 5px;">TERMS & CONDITIONS</p>
+      <label>
+        <input type="checkbox" id="agreeTerms" checked>
+        <span>ខ្ញុំយល់ព្រមតាមលក្ខខណ្ឌ <br><small style="color:#777;">I agree to all conditions.</small></span>
+      </label>
+    </div>
+
+    <div class="total-box">
+      <button class="btn-submit" id="btnSubmit">Total: 0$</button>
+    </div>
+  </div>
+
+  <!-- Modal ABA QR Code Popup -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-card">
+      <button class="close-btn" id="btnCloseModal">&times;</button>
+      <div class="modal-title">ABA KHQR PAYMENT</div>
+      
+      <!-- Timer Box 2 នាទី -->
+      <div class="timer-box">
+        ផុតកំណត់ក្នុងរយៈពេល: <span id="countdownDisplay">02:00</span>
+      </div>
+
+      <!-- ABA QR Image (ប្ដូររូបភាព QR Code របស់អ្នកត្រង់នេះ) -->
+      <div class="qr-image-container">
+        <img src="photo_2026-08-26_23-31-48.jpg" alt="ABA QR Code" id="qrImage">
+      </div>
+
+      <div class="modal-details">
+        <div><strong>ឈ្មោះគណនី:</strong>LAM KHOM</div>
+        <div><strong>User ID:</strong> <span id="modalUserId">-</span></div>
+        <div><strong>កញ្ចប់:</strong> <span id="modalItemName">-</span></div>
+        <div class="modal-total-price">ចំនួនទឹកប្រាក់: <span id="modalTotalPrice">$0.00</span></div>
+      </div>
+
+      <button class="btn-done" id="btnDone">ខ្ញុំបានទូទាត់រួចរាល់</button>
+    </div>
+  </div>
+
+  <!-- JavaScript Section -->
+  <script>
+    let selectedPrice = 0;
+    let selectedItemName = "";
+    let countdownInterval = null;
+
+    const itemCards = document.querySelectorAll('.item-card');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const paymentOption = document.getElementById('btnPaymentOption');
+    const userIdInput = document.getElementById('userId');
+    const zoneIdInput = document.getElementById('zoneId');
+    const agreeTerms = document.getElementById('agreeTerms');
+
+    // Modal elements
+    const qrModal = document.getElementById('qrModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const btnDone = document.getElementById('btnDone');
+    const modalUserId = document.getElementById('modalUserId');
+    const modalItemName = document.getElementById('modalItemName');
+    const modalTotalPrice = document.getElementById('modalTotalPrice');
+    const countdownDisplay = document.getElementById('countdownDisplay');
+
+    // ជ្រើសរើសកញ្ចប់ពេជ្រ/Pass
+    itemCards.forEach(card => {
+      card.addEventListener('click', () => {
+        itemCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+
+        const priceText = card.querySelector('.item-price').innerText;
+        selectedItemName = card.querySelector('.item-name').innerText;
+        
+        selectedPrice = parseFloat(priceText.replace('$', ''));
+        btnSubmit.innerText = `Total: $${selectedPrice.toFixed(2)}`;
+      });
+    });
+
+    // មុខងាររាប់ថយក្រោយ ២ នាទី (120 វិនាទី)
+    function startTimer(durationInSeconds) {
+      clearInterval(countdownInterval); // បោះចោល timer ចាស់
+      let timer = durationInSeconds;
+
+      function updateDisplay() {
+        let minutes = Math.floor(timer / 60);
+        let seconds = timer % 60;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        countdownDisplay.innerText = `${minutes}:${seconds}`;
+
+        if (--timer < 0) {
+          clearInterval(countdownInterval);
+          alert("រយៈពេលបង់ប្រាក់បានផុតកំណត់ (២នាទី)! សូមធ្វើការបញ្ជាទិញម្ដងទៀត។");
+          closeModal();
+        }
+      }
+
+      updateDisplay(); // រ៉ាន់ភ្លាមៗដំបូង
+      countdownInterval = setInterval(updateDisplay, 1000);
+    }
+
+    // មុខងារបើក Modal
+    function openPaymentModal() {
+      if (!userIdInput.value.trim() || !zoneIdInput.value.trim()) {
+        alert("សូមបញ្ចូល User ID និង Zone ID ជាមុនសិន!");
+        return;
+      }
+
+      if (selectedPrice === 0) {
+        alert("សូមជ្រើសរើសកញ្ចប់ Diamond/Pass ជាមុនសិន!");
+        return;
+      }
+
+      if (!agreeTerms.checked) {
+        alert("សូមចុចយល់ព្រមតាមលក្ខខណ្ឌ (Terms & Conditions) ជាមុនសិន!");
+        return;
+      }
+
+      // បញ្ចូលទិន្នន័យក្នុង Modal
+      modalUserId.innerText = `${userIdInput.value.trim()} (${zoneIdInput.value.trim()})`;
+      modalItemName.innerText = selectedItemName;
+      modalTotalPrice.innerText = `$${selectedPrice.toFixed(2)}`;
+
+      // បង្ហាញ Modal & ចាប់ផ្ដើម Timer ២ នាទី (120 វិនាទី)
+      qrModal.classList.add('active');
+      startTimer(120);
+    }
+
+    // មុខងារបិទ Modal
+    function closeModal() {
+      qrModal.classList.remove('active');
+      clearInterval(countdownInterval);
+    }
+
+    // Event Listeners
+    paymentOption.addEventListener('click', openPaymentModal);
+    btnSubmit.addEventListener('click', openPaymentModal);
+
+    btnCloseModal.addEventListener('click', closeModal);
+
+    btnDone.addEventListener('click', () => {
+      alert("សូមអរគុណ! យើងខ្ញុំនឹងពិនិត្យមើលការទូទាត់ប្រាក់ និងបញ្ជូនពេជ្រជូនលោកអ្នកក្នុងពេលឆាប់ៗនេះ។");
+      closeModal();
+    });
+
+    // ចុចខាងក្រៅ modal ដើម្បីបិទ
+    qrModal.addEventListener('click', (e) => {
+      if (e.target === qrModal) {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
