@@ -1,80 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>San Vannet Top up</title>
-  <!-- Google Font: Orbitron -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  <!-- Header Section -->
-  <header class="header">
-    <h1>SAN VANNET</h1>
-  </header>
+body {
+  background-color: #120309;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
 
-  <!-- Game Cards Grid -->
-  <main class="game-grid">
+/* Header & Title Styling */
+.header {
+  margin-bottom: 30px;
+  text-align: center;
+}
 
-    <!-- Card 1 -->
-    <div class="card">
-      <div class="card-image-wrapper">
-        <img class="thumbnail" src="MLBB_icon.webp" alt="Mobile Legends">
-      </div>
-      <div class="card-title">Mobile Legends</div>
-      <a href="MobileLegends.html" class="btn-select">ជ្រើសរើស</a>
-    </div>
+.header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  
+  /* Color Gradient */
+  background: linear-gradient(180deg, #ffffff 0%, #ff2a5f 70%, #990026 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Glow Effect & Drop Shadow */
+  text-shadow: 0 0 15px rgba(255, 42, 95, 0.6);
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.8));
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
 
-    <!-- Card 2 -->
-    <div class="card">
-      <div class="card-image-wrapper">
-        <img class="thumbnail" src="MLBB_icon.webp" alt="MLBB INDO">
-      </div>
-      <div class="card-title">MLBB INDO</div>
-      <a href="MobileLegends.html" class="btn-select">ជ្រើសរើស</a>
-    </div>
+.header h1:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 25px rgba(255, 42, 95, 0.9);
+}
 
-    <!-- Card 3 -->
-    <div class="card">
-      <div class="card-image-wrapper">
-        <img class="thumbnail" src="MLBB_icon.webp" alt="MLBB SG/MY">
-      </div>
-      <div class="card-title">MLBB SG/MY</div>
-      <a href="MobileLegends.html" class="btn-select">ជ្រើសរើស</a>
-    </div>
+/* Game Grid Container - បង្ខំឱ្យ 3 Columns គ្រប់ទំហំអេក្រង់ */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  width: 100%;
+}
 
-    <!-- Card 4 -->
-    <div class="card">
-      <div class="card-image-wrapper">
-        <img class="thumbnail" src="Roblox_(2025)_(App_Icon).svg.webp" alt="Roblox">
-      </div>
-      <div class="card-title">Roblox</div>
-      <a href="Roblox.html" class="btn-select">ជ្រើសរើស</a>
-    </div>
+/* Card Styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    <!-- Card 5 -->
-    <div class="card">
-      <div class="card-image-wrapper">
-        <img class="thumbnail" src="free-fire-max-thumbnail.webp" alt="Free Fire SGMY">
-      </div>
-      <div class="card-title">Free Fire</div>
-      <a href="Freefire.html" class="btn-select">ជ្រើសរើស</a>
-    </div>
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(224, 30, 74, 0.3);
+}
 
-    <!-- Card 6 -->
-    <div class="card">
-      <div class="card-image-wrapper">
-        <img class="thumbnail" src="b0d49366547f17e99bc85637e464d438.png" alt="Magic Chess GoGo">
-      </div>
-      <div class="card-title">Magic Chess GoGo</div>
-      <a href="magic.html" class="btn-select">ជ្រើសរើស</a>
-    </div>
+/* Image Wrapper */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  aspect-ratio: 1 / 1;
+}
 
-  </main>
+.card-image-wrapper img.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-</body>
-</html>
+/* Game Title */
+.card-title {
+  color: #1a1a1a;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Action Button/Link */
+.btn-select {
+  width: 100%;
+  background: linear-gradient(90deg, #e01e4a, #d81b60);
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%);
+  text-decoration: none;
+}
+
+.btn-select::before {
+  content: "||";
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* សម្រួលទំហំធាតុផ្សេងៗឱ្យតូចល្មមស្អាតពេលមើលលើ Mobile */
+@media (max-width: 600px) {
+  body {
+    padding: 10px 6px;
+  }
+
+  .header {
+    margin-bottom: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .game-grid {
+    gap: 8px; /* បន្ថយចន្លោះរវាង Card ឱ្យនៅជិតគ្នាលើអេក្រង់តូច */
+  }
+
+  .card {
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .card-image-wrapper {
+    margin-bottom: 6px;
+    border-radius: 8px;
+  }
+
+  .card-title {
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  .btn-select {
+    padding: 4px 2px;
+    font-size: 0.65rem;
+    justify-content: center;
+    clip-path: none; /* លុបទ្រង់ទ្រាយកាត់ដើម្បីសល់កន្លែងអក្សរ */
+    border-radius: 4px;
+  }
+
+  .btn-select::before {
+    display: none; /* លុបសញ្ញា || */
+  }
+}
