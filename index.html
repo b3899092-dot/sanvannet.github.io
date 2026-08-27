@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="km">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VANNA GAMING Top up</title>
-  <!-- Google Font: Orbitron -->
+  <title>Vanna gaming Top up</title>
+  <!-- Google Font: Orbitron & Kantumruy Pro -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Header Section -->
   <header class="header">
-    <h1>VANNA GAMING</h1>
+    <!-- ផ្នែក Banner Cover ធំ (បង្ហាញ ៦ រូបភាពឆ្លាស់គ្នា) -->
+    <div class="banner-fader">
+      <img class="fade-img active" src="MLBB_icon.webp" alt="Mobile Legends Banner">
+      <img class="fade-img" src="Roblox_(2025)_(App_Icon).svg.webp" alt="Roblox Banner">
+      <img class="fade-img" src="free-fire-max-thumbnail.webp" alt="Free Fire Banner">
+      <img class="fade-img" src="b0d49366547f17e99bc85637e464d438.png" alt="Magic Chess Banner">
+      <img class="fade-img" src="photo_2026-08-27_18-43-29.jpg" alt="Banner 5">
+      <img class="fade-img" src="photo_2026-08-27_18-53-23.jpg" alt="Banner 6">
+    </div>
+
+    <h1>Vanna gaming</h1>
   </header>
 
   <!-- Game Cards Grid -->
@@ -75,6 +85,21 @@
     </div>
 
   </main>
+
+  <!-- JavaScript ធ្វើឱ្យរូបភាពទាំង ៦ លោតឆ្លាស់គ្នា -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = document.querySelectorAll(".banner-fader .fade-img");
+      let currentIndex = 0;
+
+      // ប្តូររូបភាពរៀងរាល់ 3 វិនាទី (3000ms)
+      setInterval(() => {
+        images[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add("active");
+      }, 3000);
+    });
+  </script>
 
 </body>
 </html>
